@@ -27,7 +27,7 @@ const AddCoffee = () => {
             if(data.insertedId){
                Swal.fire({
                 title: 'Success!',
-                text: 'User Added Successfully!',
+                text: 'Coffee Added Successfully!',
                 icon: 'success',
                 confirmButtonText: 'Ok'
               }) 
@@ -39,7 +39,7 @@ const AddCoffee = () => {
         <div className="container mx-auto">
             <div className="w-full lg:h-screen h-[1200px] bg-[#F4F3F0] px-12">
                     <div className="space-y-5 pb-5">
-                    <h1 className="text-3xl font-bold text-center pt-12">
+                    <h1 className="text-3xl font-bold text-center pt-5 lg:pt-12">
                     Add New Coffee </h1>
                     <p className="text-center font-medium">
                         It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.
@@ -93,7 +93,7 @@ const AddCoffee = () => {
                                 <label className="label">
                                     <span className="label-text">Photo</span>
                                 </label>
-                                <input type="url" name="photo" placeholder="Photo URL" className="input input-bordered" required />
+                                <input type="text" name="photo" placeholder="Photo URL" className="input input-bordered" required />
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn bg-[#D2B48C]">Add Coffee</button>
