@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2'
 
 const AddCoffee = () => {
     const handleAddCoffee = e => {
@@ -11,8 +12,27 @@ const AddCoffee = () => {
         const details = form.details.value;
         const photo = form.photo.value;
         const newCoffee = {name,supplier,chef,taste,details,photo,category};
-        console.log(newCoffee);
+        
 
+        fetch('http://localhost:5000/coffee', {
+            method:"POST",
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(newCoffee)
+        })
+        .then(res =>res.json())
+        .then(data => {
+            console.log(data);
+            if(data.insertedId){
+               Swal.fire({
+                title: 'Success!',
+                text: 'User Added Successfully!',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              }) 
+            }
+        })
         
     }
     return (
@@ -31,15 +51,15 @@ const AddCoffee = () => {
                                 <div className=" w-full space-y-4 py-3">
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text">Name</span>
+                                            <span className="label-text">Coffee Name</span>
                                         </label>
                                         <input type="text" name="name" placeholder="Enter Cofee Name" className="input input-bordered" />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text">Supplier</span>
+                                            <span className="label-text">Price</span>
                                         </label>
-                                        <input type="text" name="supplier" placeholder="Enter Cofee Supplier" className="input input-bordered" required />
+                                        <input type="text" name="supplier" placeholder="Enter Cofee Price" className="input input-bordered" required />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
