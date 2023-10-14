@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
+
 import { FaEye } from 'react-icons/fa';
 import { FiEdit2 } from 'react-icons/fi';
 import { AiFillDelete } from 'react-icons/ai';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
-const CoffeeCard = ({ coffee }) => {
+const CoffeeCard = ({ coffee,coffees,setCoffees }) => {
     // eslint-disable-next-line no-unused-vars
     const { _id, name, photo, details, supplier, chef, category } = coffee || {};
 
@@ -33,6 +34,8 @@ const CoffeeCard = ({ coffee }) => {
                         'Your Coffee has been deleted.',
                         'success'
                       )
+                      const remaining = coffees.filter(coff => coff._id !== _id);
+                      setCoffees(remaining);
                    }
                 })
                 }
@@ -40,17 +43,17 @@ const CoffeeCard = ({ coffee }) => {
     }
     return (
         <div>
-            <div className=" bg-[#F5F4F1] my-1 flex items-center justify-between px-6 py-3">
-                <div>
-                    <figure><img src={photo} alt="image" /></figure>
+            <div className=" bg-[#F5F4F1] my-1 flex flex-col md:flex-row lg:flex-row items-center justify-between md:p-0 gap-4 lg:pr-3 pb-3">
+                <div className='lg:w-[300px] w-full '>
+                    <figure><img className='w-full' src={photo} alt="image" /></figure>
                 </div>
                 <div className="">
                     <h2 className="card-title">Name: {name}</h2>
                     <h2 className="card-title">Chef: {chef}</h2>
-                    <h2 className="card-title">Price: {supplier}</h2>
+                    <h2 className="card-title">Price:$$ {supplier}</h2>
                 </div>
                 <div className="card-actions justify-end items-center">
-                    <div className=" flex flex-col gap-2">
+                    <div className=" flex lg:flex-col md:flex-col flex-row  gap-2">
                         <button className="btn bg-[#d2a973] hover:bg-[#825316]"><FaEye className='text-white text-xl'></FaEye></button>
                        <Link to={`/updatecoffee/${_id}`}><button className="btn bg-[#3C393B] hover:bg-[#732358]"><FiEdit2 className='text-white text-xl'></FiEdit2></button></Link>
                         <button onClick={() => handleDelete(_id)} className="btn bg-[#EA4744] hover:bg-[#930a07]"><AiFillDelete className='text-white text-xl'></AiFillDelete></button>

@@ -17,7 +17,7 @@ const UpdateCoffee = () => {
         const details = form.details.value;
         const photo = form.photo.value;
         const updatedCoffee = {name,supplier,chef,taste,details,photo,category};
-        console.log(updatedCoffee);
+        // console.log(updatedCoffee);
 
         fetch(`http://localhost:5000/coffee/${_id}`, {
             method:"PUT",
